@@ -1,0 +1,16 @@
+{
+  "entities": [
+    {
+      "name": "Todo",
+      "attributes": [
+        { "name": "id", "type": "number" },
+        { "name": "name", "type": "string", "require": true },
+        {
+          "name": "description",
+          "type": "string",
+          "require": true
+        }
+      ]
+    }
+  ]
+}
