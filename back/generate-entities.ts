@@ -259,6 +259,16 @@ function generateRoutes(entity) {
     }(body.id);
           return deleted${entity.name};
             break;
+            // { method: MULTI_DELETE, ids: number[] }
+          case 'MULTI_DELETE':
+            // Code pour supprimer une ou plusieurs entités ${entity.name}
+            const deleted${entity.name.toLowerCase()}s = await this.${entity.name.toLowerCase()}Service.deleteMultiple${
+      entity.name
+    }s(
+                body.ids,
+              );
+              return deleted${entity.name.toLowerCase()}s;
+              break;
           case 'GET_COLUMNS_AND_TYPE':
             const cols = await this.${entity.name.toLowerCase()}Service.getColumnNamesAndTypes(body.entityName);
             return cols;
@@ -396,6 +406,21 @@ function generateServiceContent(entity) {
         }
         await this.${entity.name.toLowerCase()}Repository.remove(${entity.name.toLowerCase()}).flush();
         return ${entity.name.toLowerCase()};
+      }
+
+      // DELETE MULTIPLE ${entity.name.toUpperCase()} BY IDS
+      async deleteMultiple${entity.name}s(ids: number[]): Promise<${
+      entity.name
+    }Entity[]> {
+        const deleted${entity.name}s: ${entity.name}Entity[] = [];
+    
+        for (const id of ids) {
+          const deleted${entity.name} = await this.delete${entity.name}(id);
+          if (deleted${entity.name}) {
+            deleted${entity.name}s.push(deleted${entity.name});
+          }
+        }
+        return deleted${entity.name}s;
       }
 
       async getColumnNamesAndTypes(entityName: string): Promise<{ name: string; type: string }[]> {

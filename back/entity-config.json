@@ -11,6 +11,22 @@
           "require": true
         }
       ]
+    },
+    {
+      "name": "Monument",
+      "attributes": [
+        { "name": "id", "type": "number" },
+        { "name": "name", "type": "string", "require": true },
+        {
+          "name": "continent",
+          "type": "string",
+          "require": true
+        },
+        {
+          "name": "city",
+          "type": "string"
+        }
+      ]
     }
   ]
 }
