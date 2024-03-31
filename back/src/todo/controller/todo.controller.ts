@@ -81,6 +81,14 @@ export class TodoController {
         const deletedTodo = await this.todoService.deleteTodo(body.id);
         return deletedTodo;
         break;
+      // { method: MULTI_DELETE, ids: number[] }
+      case 'MULTI_DELETE':
+        // Code pour supprimer une ou plusieurs entités Todo
+        const deletedtodos = await this.todoService.deleteMultipleTodos(
+          body.ids,
+        );
+        return deletedtodos;
+        break;
       case 'GET_COLUMNS_AND_TYPE':
         const cols = await this.todoService.getColumnNamesAndTypes(
           body.entityName,

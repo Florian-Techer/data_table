@@ -60,6 +60,19 @@ export class TodoService {
     return todo;
   }
 
+  // DELETE MULTIPLE TODO BY IDS
+  async deleteMultipleTodos(ids: number[]): Promise<TodoEntity[]> {
+    const deletedTodos: TodoEntity[] = [];
+
+    for (const id of ids) {
+      const deletedTodo = await this.deleteTodo(id);
+      if (deletedTodo) {
+        deletedTodos.push(deletedTodo);
+      }
+    }
+    return deletedTodos;
+  }
+
   async getColumnNamesAndTypes(
     entityName: string,
   ): Promise<{ name: string; type: string }[]> {
